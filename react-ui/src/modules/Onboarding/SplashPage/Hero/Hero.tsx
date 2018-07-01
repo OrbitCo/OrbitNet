@@ -4,7 +4,6 @@ import * as React from "react";
 // Styled components
 import {
     Title,
-    Slash,
     Wrapper,
     SubTitle,
     Description,
@@ -28,10 +27,9 @@ export default class Hero extends React.Component<Props, {}> {
                 <HeroContainer>
                     <HeroDescription>
                         <Wrapper>
-                            <Title>Orbit Network</Title>
-                            <Slash alt="logo" src={require("../../../../assets/img/slash.svg")} />
+                          <h2>  <Title>Orbit Network</Title></h2>
                         </Wrapper>
-                        <SubTitle>Borrow and Lend Cryptoassets</SubTitle>
+                        <SubTitle>P2P Decentralized Lending and Borrowing Platform</SubTitle>
                         <Description>
                           <h2>  Using Orbit Network, borrowers and lenders can enter into tokenized
                             lending agreements without any intermediaries.</h2>
