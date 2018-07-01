@@ -5,7 +5,7 @@ export const Background = styled.div``;
 export const InnerContainer = styled.div`
     width: 620px;
     margin: 0px auto;
-    background-color: #ffffff;
+    background-color: #e8e3e3;
     box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.12);
 
     @media only screen and (max-width: 823px) {

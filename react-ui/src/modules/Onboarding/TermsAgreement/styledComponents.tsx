@@ -4,47 +4,7 @@ import { Link } from "react-router";
 import { fontSize } from "../../../theme";
 
 export const BannerContainer = styled.div`
-    background: rgba(37, 72, 101, 1);
-    background: -moz-linear-gradient(
-        left,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(49, 215, 227, 1) 100%
-    );
-    background: -webkit-gradient(
-        left top,
-        right top,
-        color-stop(0%, rgba(37, 72, 101, 1)),
-        color-stop(0%, rgba(37, 72, 101, 1)),
-        color-stop(100%, rgba(49, 215, 227, 1))
-    );
-    background: -webkit-linear-gradient(
-        left,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(49, 215, 227, 1) 100%
-    );
-    background: -o-linear-gradient(
-        left,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(49, 215, 227, 1) 100%
-    );
-    background: -ms-linear-gradient(
-        left,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(49, 215, 227, 1) 100%
-    );
-    background: linear-gradient(
-        to right,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(37, 72, 101, 1) 0%,
-        rgba(49, 215, 227, 1) 100%
-    );
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#254865', endColorstr='#31d7e3', GradientType=1 );
-    width: 100%;
-    height: 207px;
+
 
     @media only screen and (max-width: 823px) {
         height: 140px;
@@ -59,7 +19,7 @@ export const BannerContainer = styled.div`
 
 export const Header = styled.div`
     color: #002326;
-    font-family: DIN-Bold;
+    font-family: Arial;
     font-size: ${fontSize.h1};
     line-height: 50px;
 

@@ -25,25 +25,25 @@ export class Navigation extends React.Component<{}, {}> {
 
                     <MenuRight>
                         <MenuItem>
-                            <a href="https://docs.dharma.io" target="_blank">
-                                Developer Documentation
+                            <a href="https://orbitcoin.io" target="_blank">
+                                About us
                             </a>
                         </MenuItem>
 
                         <MenuItem>
-                            <a href="https://chat.dharma.io" target="_blank">
+                            <a href="https://t.me/orbitnetwork" target="_blank">
                                 Chat
                             </a>
                         </MenuItem>
 
                         <MenuItem>
-                            <a href="https://blog.dharma.io" target="_blank">
+                            <a href="#" target="_blank">
                                 Blog
                             </a>
                         </MenuItem>
 
                         <MenuItem>
-                            <a href="https://www.reddit.com/r/DharmaProtocol/" target="_blank">
+                            <a href="#" target="_blank">
                                 Reddit
                             </a>
                         </MenuItem>

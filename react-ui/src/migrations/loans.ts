@@ -11,7 +11,7 @@ const {
     DebtToken,
     SimpleInterestTermsContract,
     CollateralizedSimpleInterestTermsContract,
-} = require("@dharmaprotocol/contracts");
+} = require("@dharmaprotocol/dharma.js/node_modules/@dharmaprotocol/contracts");
 const promisify = require("tiny-promisify");
 const BigNumber = require("bignumber.js");
 const ABIDecoder = require("abi-decoder");

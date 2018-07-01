@@ -74,22 +74,21 @@ class TermsAgreement extends React.Component<Props, State> {
     render() {
         const checkboxLabel = (
             <span>
-                I have read and agree to the <StyledLink to="/terms">Terms of Use</StyledLink>.
+                I have read and agree to the <StyledLink to="/">Terms of Use</StyledLink>.
             </span>
         );
         return (
             <PaperLayout>
                 <BannerContainer />
                 <MainWrapper>
-                    <Header>Welcome to Dharma Plex</Header>
+                    <Header>Orbit Network</Header>
                     <Description>
-                        The Dharma Protocol enables users to interact on the Ethereum blockchain
-                        using tokenized debt agreements. However, Dharma Labs Inc. is not a party to
-                        any contract entered into between users of the Dharma Protocol, does not act
-                        as a lender or give loans using the Dharma Protocol, and does not otherwise
+                      <h2>  Orbit enables users to interact on the Ethereum blockchain
+                        using tokenized debt agreements. Orbit is not a party to
+                        any contract entered into between users, does not act
+                        as a lender or give loans using Orbit, and does not otherwise
                         enter into any agreements with or commit to any obligations to any user of
-                        the Dharma Protocol. Further, you acknowledge that the Dharma Protocol is in
-                        beta form, may have limited functionality, and may contain errors.
+                        the Orbit Network.</h2>
                     </Description>
                     <Checkbox
                         name="agree"

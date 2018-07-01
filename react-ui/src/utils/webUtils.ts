@@ -39,7 +39,7 @@ export async function shortenUrl(
     const bitly = BitlyClient(process.env.REACT_APP_BITLY_ACCESS_TOKEN);
 
     if (hostname === "localhost") {
-        hostname = "plex.dharma.io";
+        hostname = process.env.REACT_APP_NGROK_HOSTNAME || "plex.dharma.io";
     }
 
     let fullUrl = "https://" + hostname;

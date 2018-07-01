@@ -54,6 +54,7 @@ export namespace Analytics {
     }
 
     function shouldSendAnalytics() {
-        return process.env.NODE_ENV === "production";
+        // return process.env.NODE_ENV === "production";
+        return false;
     }
 }

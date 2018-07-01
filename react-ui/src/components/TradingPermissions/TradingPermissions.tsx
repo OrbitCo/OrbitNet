@@ -106,13 +106,6 @@ class TradingPermissions extends React.Component<Props, State> {
             }
 
             const tokens = await dharma.token.getSupportedTokens();
-            // HACK: Short-term add EOS for permissions, etc.
-            tokens.push({
-                address: "0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0",
-                name: "EOS",
-                symbol: "EOS",
-                numDecimals: new BigNumber(18),
-            });
 
             const tokensWithBalance = await Promise.all(
                 await tokens.map(async (token) => {

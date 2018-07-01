@@ -94,10 +94,10 @@ class PageLayout extends React.Component<{}, State> {
                             {this.props.children}
 
                             <Footer>
-                                <FooterLink to="/terms">Terms of Use</FooterLink>
-                                <FooterLink to="/privacy">Privacy Policy</FooterLink>
+                                <FooterLink to="/">Terms of Use</FooterLink>
+                                <FooterLink to="/">Privacy Policy</FooterLink>
                                 <FooterA
-                                    href="https://airtable.com/shrMjBS1pyM1iAJzQ"
+                                    href="http://orbitcoin.io"
                                     target="_blank"
                                 >
                                     Give Us Feedback

@@ -92,7 +92,7 @@ export const HeroContainer = styled.div`
     height: 100%;
     max-width: 1200px;
 
-    margin: 120px auto 80px auto;
+    margin: 12px auto 80px auto;
 
     @media (max-width: 600px) {
         margin: 40px auto 0 auto;
@@ -116,7 +116,7 @@ export const HeroImage = styled.div`
     margin: 0 auto;
 
     img {
-        width: 100%;
+        width: 150%;
     }
 
     @media (max-width: 600px) {

@@ -18,7 +18,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const BrandLogo = styled.img`
-    width: 35px;
+    width: 55px;
 `;
 
 export const StyledLink = styled(Link)`

@@ -4,7 +4,7 @@ import * as Web3 from "web3";
 import { PageLayout } from "./layouts";
 import { Web3ModalContainer } from "./components/Web3Modal";
 
-const Intercom = require("react-intercom").default;
+// const Intercom = require("react-intercom").default;
 const promisify = require("tiny-promisify");
 
 interface Props {
@@ -65,7 +65,7 @@ class App extends React.Component<Props, State> {
         return (
             <PageLayout>
                 {this.props.children}
-                <Intercom appID={"ll37s9fu"} />
+                {/* <Intercom appID={"ll37s9fu"} /> */}
                 <Web3ModalContainer showWeb3BrowserModal={this.props.showWeb3BrowserModal} />
             </PageLayout>
         );
