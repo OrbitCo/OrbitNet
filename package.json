@@ -1,0 +1,28 @@
+{
+  "name": "dharma-plex",
+  "version": "1.0.0",
+  "description": "An example client built on top of Dharma Protocol",
+  "engines": {
+    "node": "9.11.x"
+  },
+  "scripts": {
+    "start": "node server",
+    "test": "cd react-ui/ && yarn jest",
+    "heroku-postbuild": "cd react-ui/ && yarn && yarn build"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "repository": "https://github.com/DharmaProtocol/plex",
+  "keywords": [
+    "Dharma Protocol",
+    "Plex"
+  ],
+  "license": "MIT",
+  "devDependencies": {},
+  "main": "index.js"
+}
