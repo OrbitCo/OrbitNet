@@ -31,8 +31,9 @@ export default class Hero extends React.Component<Props, {}> {
                         </Wrapper>
                         <SubTitle>P2P Decentralized Lending and Borrowing Platform</SubTitle>
                         <Description>
-                          <h2>  Using Orbit Network, borrowers and lenders can enter into tokenized
-                            lending agreements without any intermediaries.</h2>
+                           Orbit Network is a fully decentralized financial marketplace built on top of the Ethereum Network
+                            allowing lenders and borrowers  to create peer to
+                            peer lending agreements in a secure and transparent way using Blockchain and Smart Contracts.
                         </Description>
                         <BlocksBetweenContainer>
                             <Button onClick={handleEnterApp}>Get Started</Button>
