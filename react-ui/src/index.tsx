@@ -13,12 +13,21 @@ import { DebtEntity, loadState, saveState } from "./models";
 
 import { applyMiddleware, compose, createStore, Middleware } from "redux";
 import { Provider } from "react-redux";
-import { reducers } from "./reducers";
 import reduxThunk from "redux-thunk";
+import { createLogger } from "redux-logger";
+
 const throttle = require("lodash/throttle");
 
+import { reducers } from "./reducers";
+
+const loggerMiddleware = createLogger();
+
 function setUpMiddleware(): Middleware[] {
-    let middlewareArray = [reduxThunk];
+    let middlewareArray = [reduxThunk] as Middleware[];
+
+    if (process.env.NODE_ENV === "development") {
+        middlewareArray = [...middlewareArray, loggerMiddleware] as Middleware[];
+    }
 
     // const sentryDsn = process.env.REACT_APP_SENTRY_DSN;
 
