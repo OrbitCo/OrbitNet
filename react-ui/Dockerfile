@@ -4,7 +4,7 @@ WORKDIR /intermediate
 
 COPY package.json ./
 COPY yarn.lock ./
-RUN yarn install
+RUN yarn --ignore-engines install
 COPY . ./
 RUN yarn build
 
