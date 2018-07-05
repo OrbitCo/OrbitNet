@@ -96,10 +96,7 @@ class PageLayout extends React.Component<{}, State> {
                             <Footer>
                                 <FooterLink to="/">Terms of Use</FooterLink>
                                 <FooterLink to="/">Privacy Policy</FooterLink>
-                                <FooterA
-                                    href="http://orbitcoin.io"
-                                    target="_blank"
-                                >
+                                <FooterA href="http://orbitcoin.io" target="_blank">
                                     Give Us Feedback
                                 </FooterA>
                             </Footer>

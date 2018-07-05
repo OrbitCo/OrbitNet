@@ -83,12 +83,14 @@ class TermsAgreement extends React.Component<Props, State> {
                 <MainWrapper>
                     <Header>Orbit Network</Header>
                     <Description>
-                      <h2>  Orbit enables users to interact on the Ethereum blockchain
-                        using tokenized debt agreements. Orbit is not a party to
-                        any contract entered into between users, does not act
-                        as a lender or give loans using Orbit, and does not otherwise
-                        enter into any agreements with or commit to any obligations to any user of
-                        the Orbit Network.</h2>
+                        <h2>
+                            {" "}
+                            Orbit enables users to interact on the Ethereum blockchain using
+                            tokenized debt agreements. Orbit is not a party to any contract entered
+                            into between users, does not act as a lender or give loans using Orbit,
+                            and does not otherwise enter into any agreements with or commit to any
+                            obligations to any user of the Orbit Network.
+                        </h2>
                     </Description>
                     <Checkbox
                         name="agree"

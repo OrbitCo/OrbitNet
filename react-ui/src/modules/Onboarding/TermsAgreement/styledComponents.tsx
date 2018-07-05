@@ -4,8 +4,6 @@ import { Link } from "react-router";
 import { fontSize } from "../../../theme";
 
 export const BannerContainer = styled.div`
-
-
     @media only screen and (max-width: 823px) {
         height: 140px;
     }

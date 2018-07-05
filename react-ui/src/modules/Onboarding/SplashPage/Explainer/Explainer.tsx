@@ -6,9 +6,7 @@ export default class Explainer extends React.Component<{}, {}> {
     render() {
         return (
             <Wrapper>
-                <ExplainerContent>
-                    Orbit Network 2018
-                </ExplainerContent>
+                <ExplainerContent>Orbit Network 2018</ExplainerContent>
             </Wrapper>
         );
     }

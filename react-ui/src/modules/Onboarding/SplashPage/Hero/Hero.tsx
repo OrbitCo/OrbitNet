@@ -24,26 +24,30 @@ export default class Hero extends React.Component<Props, {}> {
         const { handleEnterApp } = this.props;
 
         return (
-                <HeroContainer>
-                    <HeroDescription>
-                        <Wrapper>
-                          <h2>  <Title>Orbit Network</Title></h2>
-                        </Wrapper>
-                        <SubTitle>P2P Decentralized Lending and Borrowing Platform</SubTitle>
-                        <Description>
-                           Orbit Network is a fully decentralized financial marketplace built on top of the Ethereum Network
-                            allowing lenders and borrowers  to create peer to
-                            peer lending agreements in a secure and transparent way using Blockchain and Smart Contracts.
-                        </Description>
-                        <BlocksBetweenContainer>
-                            <Button onClick={handleEnterApp}>Get Started</Button>
-                        </BlocksBetweenContainer>
-                    </HeroDescription>
+            <HeroContainer>
+                <HeroDescription>
+                    <Wrapper>
+                        <h2>
+                            {" "}
+                            <Title>Orbit Network</Title>
+                        </h2>
+                    </Wrapper>
+                    <SubTitle>P2P Decentralized Lending and Borrowing Platform</SubTitle>
+                    <Description>
+                        Orbit Network is a fully decentralized financial marketplace built on top of
+                        the Ethereum Network allowing lenders and borrowers to create peer to peer
+                        lending agreements in a secure and transparent way using Blockchain and
+                        Smart Contracts.
+                    </Description>
+                    <BlocksBetweenContainer>
+                        <Button onClick={handleEnterApp}>Get Started</Button>
+                    </BlocksBetweenContainer>
+                </HeroDescription>
 
-                    <HeroImage>
-                        <img src={require("../../../../assets/img/logo_color.png")} />
-                    </HeroImage>
-                </HeroContainer>
+                <HeroImage>
+                    <img src={require("../../../../assets/img/logo_color.png")} />
+                </HeroImage>
+            </HeroContainer>
         );
     }
 }
