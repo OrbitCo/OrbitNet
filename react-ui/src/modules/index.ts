@@ -7,3 +7,4 @@ export * from "./TestForm";
 export * from "./Terms";
 export * from "./Privacy";
 export * from "./EnsureAgreedToTerms";
+export { DebtsList } from "./DebtsList";

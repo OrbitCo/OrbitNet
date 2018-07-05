@@ -8,6 +8,7 @@ import { toastReducer } from "./toastReducer";
 import { tokenReducer } from "./tokenReducer";
 import { web3Reducer } from "./web3Reducer";
 import { gasPriceReducer } from "./gasPriceReducer";
+import { debtsReducer } from "./debtsReducer";
 
 export const reducers = combineReducers({
     debtEntityReducer,
@@ -19,4 +20,5 @@ export const reducers = combineReducers({
     tokenReducer,
     web3Reducer,
     gasPriceReducer,
+    debtsReducer,
 });

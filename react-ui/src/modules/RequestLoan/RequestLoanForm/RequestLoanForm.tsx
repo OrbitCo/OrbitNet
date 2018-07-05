@@ -42,7 +42,7 @@ import { web3Errors } from "../../../common/web3Errors";
 import { JSONSchema4 } from "json-schema";
 import { Loading } from "../../Loading";
 
-import LoanService from "../../../services/loan";
+import DebtsService from "../../../services/debts";
 
 interface Props {
     web3: Web3;
@@ -301,7 +301,7 @@ class RequestLoanForm extends React.Component<Props, State> {
                 termLength,
             });
 
-            await this.storeLoan(debtEntity);
+            await this.storeDebt(debtEntity);
 
             const debtQueryParams = generateDebtQueryParams(debtEntity);
 
@@ -332,9 +332,9 @@ class RequestLoanForm extends React.Component<Props, State> {
         }
     }
 
-    async storeLoan(debtEntity: OpenCollateralizedDebtEntity) {
-        await LoanService.create({
-            issuanceHash: debtEntity.issuanceHash,
+    async storeDebt(debtEntity: OpenCollateralizedDebtEntity) {
+        await DebtsService.create({
+            debt: debtEntity,
             networkId: this.props.web3.version.network,
         });
     }

@@ -24,6 +24,7 @@ import {
     TermsContainer,
     Privacy,
     EnsureAgreedToTermsContainer,
+    DebtsList,
 } from "../modules";
 
 import { ParentContainer } from "../layouts";
@@ -215,6 +216,7 @@ class AppRouter extends React.Component<Props, {}> {
                                 <IndexRoute component={RequestLoanFormContainer} />
                                 <Route path="success" component={RequestLoanSuccessContainer} />
                             </Route>
+                            <Route path="/loans" component={DebtsList} />
                         </Route>
                         <Route path="/fill" component={ParentContainer}>
                             <IndexRoute component={FillLoanEmpty} />

@@ -38,6 +38,15 @@ class LeftNavBar extends React.Component<Props> {
                 </StyledLink>
 
                 <StyledLink
+                    to="/loans"
+                    onClick={this.closeDrawer}
+                    className="nav-link"
+                    activeClassName="active"
+                >
+                    Loans List
+                </StyledLink>
+
+                <StyledLink
                     to="/request"
                     onClick={this.closeDrawer}
                     className="nav-link"
