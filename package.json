@@ -1,14 +1,12 @@
 {
-  "name": "dharma-plex",
+  "name": "orbit-net",
   "version": "1.0.0",
-  "description": "An example client built on top of Dharma Protocol",
-  "engines": {
-    "node": "9.11.x"
-  },
+  "description": "A loan app built on top of Dharma Protocol",
+  "private": true,
   "scripts": {
     "start": "node server",
-    "test": "cd react-ui/ && yarn jest",
-    "heroku-postbuild": "cd react-ui/ && yarn && yarn build"
+    "start-dev": "nodemon server",
+    "test": "cd react-ui/ && yarn jest"
   },
   "cacheDirectories": [
     "node_modules",
@@ -17,12 +15,11 @@
   "dependencies": {
     "express": "^4.14.1"
   },
-  "repository": "https://github.com/DharmaProtocol/plex",
   "keywords": [
     "Dharma Protocol",
-    "Plex"
+    "Orbit Network"
   ],
-  "license": "MIT",
-  "devDependencies": {},
-  "main": "index.js"
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
 }
