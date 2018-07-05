@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const initMongoose = require('./factories/mongoose');
-const Loan = require('./models/loan');
+const Debt = require('./models/debt');
 
 const app = express();
 
@@ -22,21 +22,35 @@ async function runApp() {
   app.use(bodyParser.urlencoded({ extended: true }));
 
   /*
-   * Creates new Loan record in MongoDB
+   * Fetches all pending debts for appropriate network
+   */
+  app.get('/api/loans', async (req, res) => {
+    const { networkId } = req.query;
+
+    const debts = await Debt.find({ networkId, status: 'pending' });
+
+    res.json({ debts });
+  });
+
+  /*
+   * Creates new Debt record in MongoDB
    */
   app.post('/api/loans', async (req, res) => {
-    const { issuanceHash, networkId } = req.body;
+    const { debt, networkId } = req.body;
 
-    // Just skip duplicated loans
-    if ((await Loan.count({ issuanceHash, networkId })) > 0) {
+    // Just skip duplicated debts
+    if ((await Debt.count({ issuanceHash: debt.issuanceHash, networkId })) > 0) {
       return res.end();
     }
 
-    const loan = new Loan({ issuanceHash, networkId });
+    const newDebt = new Debt({
+      ...debt,
+      networkId,
+    });
 
-    const savedLoan = await loan.save();
+    const savedDebt = await newDebt.save();
 
-    res.json(savedLoan);
+    res.json(savedDebt);
   });
 
   app.listen(process.env.SERVER_PORT, function () {

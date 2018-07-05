@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
+require('mongoose-bignumber');
+
 const util = require('util');
 const debug = require('debug')('server:mongo');
-
 
 module.exports = async function() {
   const host = process.env.MONGO_HOST || 'localhost';
