@@ -4,6 +4,7 @@
   "description": "A loan app built on top of Dharma Protocol",
   "private": true,
   "scripts": {
+    "build": "babel server -s -D -d dist",
     "start": "node server",
     "start-dev": "nodemon server --exec babel-node",
     "test": "cd react-ui/ && yarn jest"
