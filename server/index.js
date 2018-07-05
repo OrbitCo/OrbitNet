@@ -1,35 +1,47 @@
-const express = require('express');
+require('dotenv').config();
+
 const path = require('path');
-const cluster = require('cluster');
-const numCPUs = require('os').cpus().length;
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-const PORT = process.env.PORT || 8080;
+const initMongoose = require('./factories/mongoose');
+const Loan = require('./models/loan');
 
-// Multi-process to utilize all CPU cores.
-if (cluster.isMaster) {
-  console.error(`Node cluster master ${process.pid} is running`);
+const app = express();
 
-  // Fork workers.
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
+async function runApp() {
+  await initMongoose();
 
-  cluster.on('exit', (worker, code, signal) => {
-    console.error(`Node cluster worker ${worker.process.pid} exited: code ${code}, signal ${signal}`);
+  app.use(cors({
+    origin: process.env.FRONT_HOST,
+    credentials: true,
+  }));
+
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+
+  /*
+   * Creates new Loan record in MongoDB
+   */
+  app.post('/api/loans', async (req, res) => {
+    const { issuanceHash, networkId } = req.body;
+
+    // Just skip duplicated loans
+    if ((await Loan.count({ issuanceHash, networkId })) > 0) {
+      return res.end();
+    }
+
+    const loan = new Loan({ issuanceHash, networkId });
+
+    const savedLoan = await loan.save();
+
+    res.json(savedLoan);
   });
 
-} else {
-  const app = express();
-
-  // Priority serve any static files.
-  app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
-
-  // All remaining requests return the React app, so it can handle routing.
-  app.get('*', function(request, response) {
-    response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
-  });
-
-  app.listen(PORT, function () {
-    console.error(`Node cluster worker ${process.pid}: listening on port ${PORT}`);
+  app.listen(process.env.SERVER_PORT, function () {
+    console.error(`Listening on port ${process.env.SERVER_PORT}`);
   });
 }
+
+runApp();
