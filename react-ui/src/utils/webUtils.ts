@@ -42,7 +42,7 @@ export async function shortenUrl(
         hostname = process.env.REACT_APP_NGROK_HOSTNAME || "plex.dharma.io";
     }
 
-    let fullUrl = "https://" + hostname;
+    let fullUrl = `https://${hostname}`;
 
     if (path) {
         fullUrl += path;

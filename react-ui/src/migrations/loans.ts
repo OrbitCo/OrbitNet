@@ -13,7 +13,7 @@ const {
     CollateralizedSimpleInterestTermsContract,
 } = require("@dharmaprotocol/dharma.js/node_modules/@dharmaprotocol/contracts");
 const promisify = require("tiny-promisify");
-const BigNumber = require("bignumber.js");
+const { BigNumber } = require("bignumber.js");
 const ABIDecoder = require("abi-decoder");
 const compact = require("lodash.compact");
 const Web3Utils = require("../utils/web3Utils");

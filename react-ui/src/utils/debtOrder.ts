@@ -46,11 +46,16 @@ export const normalizeDebtOrder = (debtOrder: Types.DebtOrder) => {
 
 export const normalize = (debtOrder: any) => {
     const normalizedDebtOrder = {};
+
     Object.keys(debtOrder).map((key: string, index: number) => {
         const value = debtOrder[key];
 
-        if (value instanceof BigNumber) {
+        if (value.isBigNumber) {
             normalizedDebtOrder[key] = value.toNumber();
+
+            // Check for numbers, but skip hexadedimals
+        } else if (parseInt(value, 16).toString(16) === value && !isNaN(Number(value))) {
+            normalizedDebtOrder[key] = Number(value);
         } else if (typeof value === "object") {
             normalizedDebtOrder[key] = JSON.stringify(value);
         } else {
@@ -63,49 +68,41 @@ export const normalize = (debtOrder: any) => {
 
 export const debtOrderFromJSON = (debtOrderJSON: string) => {
     const debtOrder = JSON.parse(debtOrderJSON);
-    if (debtOrder.principalAmount && !(debtOrder.principalAmount instanceof BigNumber)) {
-        debtOrder.principalAmount = new BigNumber(Number(debtOrder.principalAmount));
+    if (debtOrder.principalAmount && !debtOrder.principalAmount.isBigNumber) {
+        debtOrder.principalAmount = new BigNumber(debtOrder.principalAmount);
     }
-    if (debtOrder.debtorFee && !(debtOrder.debtorFee instanceof BigNumber)) {
-        debtOrder.debtorFee = new BigNumber(Number(debtOrder.debtorFee));
+    if (debtOrder.debtorFee && !debtOrder.debtorFee.isBigNumber) {
+        debtOrder.debtorFee = new BigNumber(debtOrder.debtorFee);
     }
-    if (debtOrder.creditorFee && !(debtOrder.creditorFee instanceof BigNumber)) {
-        debtOrder.creditorFee = new BigNumber(Number(debtOrder.creditorFee));
+    if (debtOrder.creditorFee && !debtOrder.creditorFee.isBigNumber) {
+        debtOrder.creditorFee = new BigNumber(debtOrder.creditorFee);
     }
-    if (debtOrder.relayerFee && !(debtOrder.relayerFee instanceof BigNumber)) {
-        debtOrder.relayerFee = new BigNumber(Number(debtOrder.relayerFee));
+    if (debtOrder.relayerFee && !debtOrder.relayerFee.isBigNumber) {
+        debtOrder.relayerFee = new BigNumber(debtOrder.relayerFee);
     }
-    if (debtOrder.underwriterFee && !(debtOrder.underwriterFee instanceof BigNumber)) {
-        debtOrder.underwriterFee = new BigNumber(Number(debtOrder.underwriterFee));
+    if (debtOrder.underwriterFee && !debtOrder.underwriterFee.isBigNumber) {
+        debtOrder.underwriterFee = new BigNumber(debtOrder.underwriterFee);
     }
-    if (
-        debtOrder.underwriterRiskRating &&
-        !(debtOrder.underwriterRiskRating instanceof BigNumber)
-    ) {
-        debtOrder.underwriterRiskRating = new BigNumber(Number(debtOrder.underwriterRiskRating));
+    if (debtOrder.underwriterRiskRating && !debtOrder.underwriterRiskRating.isBigNumber) {
+        debtOrder.underwriterRiskRating = new BigNumber(debtOrder.underwriterRiskRating);
     }
-    if (
-        debtOrder.expirationTimestampInSec &&
-        !(debtOrder.expirationTimestampInSec instanceof BigNumber)
-    ) {
-        debtOrder.expirationTimestampInSec = new BigNumber(
-            Number(debtOrder.expirationTimestampInSec),
-        );
+    if (debtOrder.expirationTimestampInSec && !debtOrder.expirationTimestampInSec.isBigNumber) {
+        debtOrder.expirationTimestampInSec = new BigNumber(debtOrder.expirationTimestampInSec);
     }
-    if (debtOrder.gracePeriodInDays && !(debtOrder.gracePeriodInDays instanceof BigNumber)) {
-        debtOrder.gracePeriodInDays = new BigNumber(Number(debtOrder.gracePeriodInDays));
+    if (debtOrder.gracePeriodInDays && !debtOrder.gracePeriodInDays.isBigNumber) {
+        debtOrder.gracePeriodInDays = new BigNumber(debtOrder.gracePeriodInDays);
     }
-    if (debtOrder.salt && !(debtOrder.salt instanceof BigNumber)) {
-        debtOrder.salt = new BigNumber(Number(debtOrder.salt));
+    if (debtOrder.salt && !debtOrder.salt.isBigNumber) {
+        debtOrder.salt = new BigNumber(debtOrder.salt);
     }
-    if (debtOrder.termLength && !(debtOrder.termLength instanceof BigNumber)) {
-        debtOrder.termLength = new BigNumber(Number(debtOrder.termLength));
+    if (debtOrder.termLength && !debtOrder.termLength.isBigNumber) {
+        debtOrder.termLength = new BigNumber(debtOrder.termLength);
     }
-    if (debtOrder.interestRate && !(debtOrder.interestRate instanceof BigNumber)) {
-        debtOrder.interestRate = new BigNumber(Number(debtOrder.interestRate));
+    if (debtOrder.interestRate && !debtOrder.interestRate.isBigNumber) {
+        debtOrder.interestRate = new BigNumber(debtOrder.interestRate);
     }
-    if (debtOrder.repaidAmount && !(debtOrder.repaidAmount instanceof BigNumber)) {
-        debtOrder.repaidAmount = new BigNumber(Number(debtOrder.repaidAmount));
+    if (debtOrder.repaidAmount && !debtOrder.repaidAmount.isBigNumber) {
+        debtOrder.repaidAmount = new BigNumber(debtOrder.repaidAmount);
     }
     if (typeof debtOrder.debtorSignature === "string") {
         debtOrder.debtorSignature = JSON.parse(debtOrder.debtorSignature);

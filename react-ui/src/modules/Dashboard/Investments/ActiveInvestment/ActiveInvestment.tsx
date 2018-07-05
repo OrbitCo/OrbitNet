@@ -1,7 +1,7 @@
 // External Libraries
 import * as React from "react";
 import { Dharma } from "@dharmaprotocol/dharma.js";
-import BigNumber from "bignumber.js";
+import { BigNumber } from "bignumber.js";
 import { Row, Col, Collapse } from "reactstrap";
 
 // Utils

@@ -1,7 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
 
 # frontend dependencies and build
 react-ui/build/
@@ -9,13 +9,13 @@ react-ui/node_modules/
 react-ui/coverage/
 
 # testing
-/coverage
+coverage
 
 # production
-/build
+build
 
 # logs
-/logs
+logs
 
 # misc
 .DS_Store
