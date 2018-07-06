@@ -1,10 +1,10 @@
-FROM node:latest as build-deps
+FROM node:9.11.1 as build-deps
 
 WORKDIR /intermediate
 
 COPY package.json ./
 COPY yarn.lock ./
-RUN yarn --ignore-engines install
+RUN yarn
 COPY . ./
 RUN yarn build
 
