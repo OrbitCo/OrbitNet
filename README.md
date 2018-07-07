@@ -124,13 +124,19 @@ To do this just open MetaMask extension and select `Kovan test network` from the
 
 In case you need to apply some changes on production.
 
-1. From the root directory pull changes from git:
+1. Switch to the project root directory:
+
+```
+$ cd ~/OrbitNet
+```
+
+2. Pull changes from git:
 
 ```
 $ git pull
 ```
 
-2. Rebuild docker containers:
+3. Rebuild docker containers:
 
 ```
 $ ./start-prod.sh
