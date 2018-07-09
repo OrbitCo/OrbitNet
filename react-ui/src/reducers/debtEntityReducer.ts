@@ -117,6 +117,7 @@ export const debtEntityReducer = (
             return handleSetFilledDebtEntities(state, action.payload);
         case actionsEnums.SET_PENDING_DEBT_ENTITIES:
             return handleSetPendingDebtEntities(state, action.payload);
+        case actionsEnums.CREATE_DEBT_ENTITY:
         case actionsEnums.UPDATE_DEBT_ENTITY:
             return handleUpdateDebtEntity(state, action.debtEntity);
         default:

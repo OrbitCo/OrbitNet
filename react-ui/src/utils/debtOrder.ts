@@ -1,6 +1,6 @@
 import { BigNumber } from "bignumber.js";
 import { Types } from "@dharmaprotocol/dharma.js";
-import { DebtQueryParams, OpenCollateralizedDebtEntity } from "../models";
+import { DebtQueryParams, OpenCollateralizedDebtEntity, DebtEntity } from "../models";
 
 export const amortizationUnitToFrequency = (unit: string) => {
     let frequency: string = "";
@@ -136,4 +136,16 @@ export const generateDebtQueryParams = (debtEntity: OpenCollateralizedDebtEntity
     };
 
     return normalize(debtQueryParams);
+};
+
+export const debtOrderFromServerEntity = (debt: DebtEntity): DebtEntity => {
+    const { dharmaOrder, ...restDebt } = debt;
+
+    const normalized = debtOrderFromJSON(JSON.stringify(restDebt));
+    const normalizedDharmaOrder = debtOrderFromJSON(JSON.stringify(dharmaOrder));
+
+    return new DebtEntity({
+        ...normalized,
+        dharmaOrder: normalizedDharmaOrder,
+    });
 };

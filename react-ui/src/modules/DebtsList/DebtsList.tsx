@@ -31,9 +31,11 @@ class DebtsList extends React.Component<Props> {
                 {debtsLoading && (
                     <BarLoader width={200} height={10} color={"#1cc1cc"} loading={true} />
                 )}
-                {!debtsLoading && (
-                    <div>{debts.map((debt) => <DebtOrder key={debt.id} debt={debt} />)}</div>
-                )}
+                {!debtsLoading &&
+                    debts.length > 0 && (
+                        <div>{debts.map((debt) => <DebtOrder key={debt.id} debt={debt} />)}</div>
+                    )}
+                {!debtsLoading && debts.length === 0 && <div>No debts found</div>}
             </MainWrapper>
         );
     }

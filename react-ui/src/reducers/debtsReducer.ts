@@ -11,6 +11,11 @@ class DebtsReducerState {
     }
 }
 
+const handleCreateDebtEntity = (state: DebtsReducerState, debtEntity: DebtEntity) => ({
+    ...state,
+    debts: [debtEntity, ...state.debts],
+});
+
 const handlePendingDebtsFetch = (state: DebtsReducerState, debts: DebtEntity[]) => ({
     ...state,
     debts,
@@ -24,6 +29,8 @@ const handlePendingDebtRemoval = (state: DebtsReducerState, issuanceHash: string
 
 export const debtsReducer = (state: DebtsReducerState = new DebtsReducerState(), action: any) => {
     switch (action.type) {
+        case actionsEnums.CREATE_DEBT_ENTITY:
+            return handleCreateDebtEntity(state, action.debtEntity);
         case actionsEnums.DEBTS_FETCH_REQUEST_SUCCESSED:
             return handlePendingDebtsFetch(state, action.debts);
         case actionsEnums.FILL_DEBT_ENTITY:

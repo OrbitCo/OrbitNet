@@ -42,14 +42,13 @@ import { web3Errors } from "../../../common/web3Errors";
 import { JSONSchema4 } from "json-schema";
 import { Loading } from "../../Loading";
 
-import DebtsService from "../../../services/debts";
-
 interface Props {
     web3: Web3;
+    networkId: number;
     accounts: string[];
     dharma: Dharma;
     tokens: TokenEntity[];
-    updateDebtEntity: (debtEntity: DebtEntity) => void;
+    createDebtEntity: (debtEntity: DebtEntity, networkId: number) => void;
     handleSetError: (errorMessage: string) => void;
     setPendingDebtEntity: (issuanceHash: string) => void;
     shortenUrl: (url: string, path?: string, queryParams?: object) => Promise<string>;
@@ -235,7 +234,13 @@ class RequestLoanForm extends React.Component<Props, State> {
 
     async handleSignDebtOrder() {
         const { debtOrderInstance, description, issuanceHash, principalTokenAmount } = this.state;
-        const { handleSetError, updateDebtEntity, shortenUrl, setPendingDebtEntity } = this.props;
+        const {
+            handleSetError,
+            createDebtEntity,
+            shortenUrl,
+            setPendingDebtEntity,
+            networkId,
+        } = this.props;
 
         try {
             Analytics.track(Analytics.RequestLoanAction.ConfirmRequest, {
@@ -301,8 +306,6 @@ class RequestLoanForm extends React.Component<Props, State> {
                 termLength,
             });
 
-            await this.storeDebt(debtEntity);
-
             const debtQueryParams = generateDebtQueryParams(debtEntity);
 
             let fillLoanShortUrl: string = "";
@@ -313,7 +316,7 @@ class RequestLoanForm extends React.Component<Props, State> {
 
             debtEntity.fillLoanShortUrl = fillLoanShortUrl;
 
-            updateDebtEntity(debtEntity);
+            createDebtEntity(debtEntity, networkId);
             setPendingDebtEntity(debtEntity.issuanceHash);
 
             browserHistory.push(`/request/success/?issuanceHash=${debtEntity.issuanceHash}`);
@@ -330,13 +333,6 @@ class RequestLoanForm extends React.Component<Props, State> {
             });
             return;
         }
-    }
-
-    async storeDebt(debtEntity: OpenCollateralizedDebtEntity) {
-        await DebtsService.create({
-            debt: debtEntity,
-            networkId: this.props.web3.version.network,
-        });
     }
 
     confirmationModalToggle() {

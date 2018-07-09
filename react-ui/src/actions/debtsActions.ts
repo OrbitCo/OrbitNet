@@ -1,5 +1,5 @@
 import { actionsEnums } from "../common/actionsEnums";
-import { debtOrderFromJSON } from "../utils/debtOrder";
+import { debtOrderFromServerEntity } from "../utils/debtOrder";
 
 import DebtsService from "../services/debts";
 
@@ -10,17 +10,7 @@ export function fetchDebts(networkId: number) {
         const { accounts } = getState().web3Reducer;
         const { debts } = await DebtsService.list(networkId);
 
-        const normalizedDebts = debts.map((debt: any) => {
-            const { dharmaOrder, ...restDebt } = debt;
-
-            const normalized = debtOrderFromJSON(JSON.stringify(restDebt));
-            const normalizedDharmaOrder = debtOrderFromJSON(JSON.stringify(dharmaOrder));
-
-            return new DebtEntity({
-                ...normalized,
-                dharmaOrder: normalizedDharmaOrder,
-            });
-        });
+        const normalizedDebts = debts.map((debt: any) => debtOrderFromServerEntity(debt));
 
         dispatch({
             type: actionsEnums.DEBTS_FETCH_REQUEST_SUCCESSED,
