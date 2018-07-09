@@ -3,18 +3,21 @@ import { DebtEntity } from "../models";
 
 class DebtsReducerState {
     debts: DebtEntity[];
+    loading: boolean;
 
     constructor() {
         this.debts = [];
+        this.loading = true;
     }
 }
 
 const handlePendingDebtsFetch = (state: DebtsReducerState, debts: DebtEntity[]) => ({
     ...state,
     debts,
+    loading: false,
 });
 
-const handlePendingDeptRemoval = (state: DebtsReducerState, issuanceHash: string) => ({
+const handlePendingDebtRemoval = (state: DebtsReducerState, issuanceHash: string) => ({
     ...state,
     debts: state.debts.filter((debt) => debt.issuanceHash !== issuanceHash),
 });
@@ -25,7 +28,7 @@ export const debtsReducer = (state: DebtsReducerState = new DebtsReducerState(),
             return handlePendingDebtsFetch(state, action.debts);
         case actionsEnums.FILL_DEBT_ENTITY:
         case actionsEnums.CANCEL_DEBT_ENTITY:
-            return handlePendingDeptRemoval(state, action.payload);
+            return handlePendingDebtRemoval(state, action.payload);
         default:
             return state;
     }

@@ -47,6 +47,8 @@ import { ETH_GAS_STATION_API_URL, SUPPORTED_NETWORK_IDS } from "../common/consta
 // Utils
 import { Analytics } from "../utils";
 
+import { fetchDebts } from "../actions/debtsActions";
+
 interface Props {
     store: any;
     env: string;
@@ -93,6 +95,9 @@ class AppRouter extends React.Component<Props, {}> {
 
             const recommendedGasPrice = await this.getRecommendedGasPrice(web3);
             dispatch(setRecommendedGasPrice(recommendedGasPrice));
+
+            // Fetch pending debts from server here
+            dispatch(fetchDebts(networkID));
         } catch (e) {
             dispatch(setError(e.message, true));
         }

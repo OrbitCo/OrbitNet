@@ -91,7 +91,7 @@ class DebtOrder extends React.Component<Props, State> {
             return null;
         }
 
-        const debtEntity = new DebtEntity(debt);
+        const debtEntity = debt;
 
         return (
             <Wrapper>
@@ -133,7 +133,7 @@ class DebtOrder extends React.Component<Props, State> {
                                 />
                             </Content>
                             <Content xs="12" sm="12" md="1">
-                                {debtEntity.termLength} {debtEntity.amortizationUnit}
+                                {debtEntity.termLength.toNumber()} {debtEntity.amortizationUnit}
                             </Content>
                             <Content xs="12" sm="12" md="2">
                                 <TokenAmount
@@ -143,7 +143,7 @@ class DebtOrder extends React.Component<Props, State> {
                                 />
                             </Content>
                             <Content xs="12" sm="12" md="2">
-                                {debtEntity.interestRate}%
+                                {debtEntity.interestRate.toNumber()}%
                             </Content>
                             <Content xs="12" sm="12" md="2">
                                 <TokenAmount
@@ -177,7 +177,7 @@ class DebtOrder extends React.Component<Props, State> {
                                         <Label>Grace Period</Label>
                                     </Col>
                                     <Col xs="6" sm="6" md="6">
-                                        {`${debtEntity.gracePeriodInDays} days`}
+                                        {`${debtEntity.gracePeriodInDays.toNumber()} days`}
                                     </Col>
                                 </Row>
 

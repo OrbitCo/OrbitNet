@@ -39,6 +39,33 @@ const handleRemovePendingDebtEntity = (state: DebtEntityReducerState, payload: s
     };
 };
 
+const handleSetPendingDebtEntities = (
+    state: DebtEntityReducerState,
+    pendingDebtEntities: DebtEntity[],
+) => {
+    const debtEntities = state.debtEntities;
+    const pendingDebtEntityIssuanceHashes: string[] = [];
+
+    for (const debtEntity of pendingDebtEntities) {
+        const issuanceHash = debtEntity.issuanceHash;
+
+        debtEntities.set(issuanceHash, debtEntity);
+        if (
+            !pendingDebtEntityIssuanceHashes.find(
+                (existingIssuanceHash: string) => existingIssuanceHash === issuanceHash,
+            )
+        ) {
+            pendingDebtEntityIssuanceHashes.push(issuanceHash);
+        }
+    }
+
+    return {
+        ...state,
+        debtEntities,
+        pendingDebtEntityIssuanceHashes,
+    };
+};
+
 const handleSetFilledDebtEntities = (
     state: DebtEntityReducerState,
     filledDebtEntities: DebtEntity[],
@@ -88,6 +115,8 @@ export const debtEntityReducer = (
             return handleRemovePendingDebtEntity(state, action.payload);
         case actionsEnums.SET_FILLED_DEBT_ENTITIES:
             return handleSetFilledDebtEntities(state, action.payload);
+        case actionsEnums.SET_PENDING_DEBT_ENTITIES:
+            return handleSetPendingDebtEntities(state, action.payload);
         case actionsEnums.UPDATE_DEBT_ENTITY:
             return handleUpdateDebtEntity(state, action.debtEntity);
         default:

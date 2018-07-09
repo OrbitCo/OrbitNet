@@ -68,6 +68,9 @@ export const normalize = (debtOrder: any) => {
 
 export const debtOrderFromJSON = (debtOrderJSON: string) => {
     const debtOrder = JSON.parse(debtOrderJSON);
+    if (debtOrder.collateralAmount && !debtOrder.collateralAmount.isBigNumber) {
+        debtOrder.collateralAmount = new BigNumber(debtOrder.collateralAmount);
+    }
     if (debtOrder.principalAmount && !debtOrder.principalAmount.isBigNumber) {
         debtOrder.principalAmount = new BigNumber(debtOrder.principalAmount);
     }
