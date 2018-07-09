@@ -35,4 +35,23 @@ export class DebtEntity {
             }
         }
     }
+
+    get totalRepayment() {
+        const { principalAmount, interestRate } = this;
+        let amount = principalAmount;
+        let percent = interestRate;
+
+        if (!(amount instanceof BigNumber)) {
+            amount = new BigNumber(amount);
+        }
+
+        if (!(percent instanceof BigNumber)) {
+            percent = new BigNumber(percent);
+        }
+
+        return percent
+            .dividedBy(100)
+            .times(amount)
+            .plus(amount);
+    }
 }

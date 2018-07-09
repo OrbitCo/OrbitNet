@@ -4,28 +4,48 @@ import { connect } from "react-redux";
 
 import { BigNumber } from "bignumber.js";
 
-import { DebtEntity } from "../../models";
+import * as moment from "moment";
+
+import { Row, Col, Collapse, Label } from "reactstrap";
+
+import { DebtEntity, OpenCollateralizedDebtEntity } from "../../models";
 import { Dharma } from "@dharmaprotocol/dharma.js";
 
-import { amortizationUnitToFrequency } from "../../utils";
+import { amortizationUnitToFrequency, generateDebtQueryParams } from "../../utils";
 
 import { TokenAmount } from "src/components";
 
+import { Wrapper, Heading, Content, Drawer } from "./styledComponents";
+
+import {
+    SummaryJsonContainer,
+    TextareaContainer,
+    StyledTextarea,
+    CopyButton,
+    CopiedMessage,
+} from "../RequestLoan/RequestLoanSuccess/RequestLoanSummary/styledComponents";
+
 interface Props {
     dharma: Dharma;
-    order: DebtEntity;
+    debt: DebtEntity;
 }
 
 interface State {
     collateralTokenDecimals: BigNumber;
     principalTokenDecimals: BigNumber;
+    collapse: boolean;
+    copied: boolean;
 }
 
 class DebtOrder extends React.Component<Props, State> {
     state = {
         collateralTokenDecimals: new BigNumber(0),
         principalTokenDecimals: new BigNumber(0),
+        collapse: false,
+        copied: false,
     };
+
+    private summaryTextarea: HTMLTextAreaElement;
 
     componentDidMount() {
         if (this.props.dharma) {
@@ -39,77 +59,163 @@ class DebtOrder extends React.Component<Props, State> {
         }
     }
 
-    async retrieveTokenDecimals() {
-        const { order, dharma } = this.props;
+    toggleDrawer = () => this.setState((state) => ({ collapse: !state.collapse }));
 
-        const collateralTokenSymbol = order.collateralTokenSymbol;
+    handleCopyClipboard() {
+        this.summaryTextarea!.select();
+        document.execCommand("copy");
+        this.summaryTextarea!.focus();
+        this.setState({ copied: true });
+    }
+
+    generateDebtJSON(debt: DebtEntity) {
+        return JSON.stringify(generateDebtQueryParams(debt as OpenCollateralizedDebtEntity));
+    }
+
+    async retrieveTokenDecimals() {
+        const { debt, dharma } = this.props;
+
+        const collateralTokenSymbol = debt.collateralTokenSymbol;
         const collateralTokenDecimals = await dharma.token.getNumDecimals(collateralTokenSymbol);
 
-        const principalTokenSymbol = order.principalTokenSymbol;
+        const principalTokenSymbol = debt.principalTokenSymbol;
         const principalTokenDecimals = await dharma.token.getNumDecimals(principalTokenSymbol);
 
         this.setState({ collateralTokenDecimals, principalTokenDecimals });
     }
 
-    /**
-     * HACK fast hack to show total repayment
-     * TODO move calculation to model
-     */
-    calcTotalRepayment(amount: BigNumber, percent: BigNumber): BigNumber {
-        if (!(amount instanceof BigNumber)) {
-            amount = new BigNumber(amount);
-        }
-
-        if (!(percent instanceof BigNumber)) {
-            percent = new BigNumber(percent);
-        }
-
-        const repayment = amount.toNumber() + amount.toNumber() * (percent.toNumber() / 100);
-
-        return new BigNumber(repayment);
-    }
-
     render() {
-        const { order } = this.props;
+        const { debt } = this.props;
 
-        if (!order) {
+        if (!debt) {
             return null;
         }
 
-        const totalRepayment = this.calcTotalRepayment(order.principalAmount, order.interestRate);
+        const debtEntity = new DebtEntity(debt);
 
         return (
-            <tr key={order.id}>
-                <td>{order.createdAt}</td>
-                <td>
-                    <TokenAmount
-                        tokenAmount={order.principalAmount}
-                        tokenDecimals={this.state.principalTokenDecimals}
-                        tokenSymbol={order.principalTokenSymbol}
-                    />
-                </td>
-                <td>
-                    {order.termLength} {order.amortizationUnit}
-                </td>
-                <td>
-                    <TokenAmount
-                        tokenAmount={totalRepayment}
-                        tokenDecimals={this.state.principalTokenDecimals}
-                        tokenSymbol={order.principalTokenSymbol}
-                    />
-                </td>
-                <td>{order.interestRate}%</td>
-                <td>
-                    <TokenAmount
-                        tokenAmount={order.collateralAmount}
-                        tokenDecimals={this.state.collateralTokenDecimals}
-                        tokenSymbol={order.collateralTokenSymbol}
-                    />
-                </td>
-                <td />
-                <td>{amortizationUnitToFrequency(order.amortizationUnit)}</td>
-                <td />
-            </tr>
+            <Wrapper>
+                <Row onClick={this.toggleDrawer}>
+                    <Col className="d-flex flex-md-column flex-sm-row" xs="12">
+                        <Row className="d-flex">
+                            <Heading xs="12" sm="12" md="2">
+                                Created
+                            </Heading>
+                            <Heading xs="12" sm="12" md="1">
+                                Principal
+                            </Heading>
+                            <Heading xs="12" sm="12" md="1">
+                                Term
+                            </Heading>
+                            <Heading xs="12" sm="12" md="2">
+                                Total repayment
+                            </Heading>
+                            <Heading xs="12" sm="12" md="2">
+                                Interest rate
+                            </Heading>
+                            <Heading xs="12" sm="12" md="2">
+                                Collateral
+                            </Heading>
+                            <Heading xs="12" sm="12" md="2">
+                                Repayment frequency
+                            </Heading>
+                        </Row>
+
+                        <Row className="d-flex">
+                            <Content xs="12" sm="12" md="2">
+                                {moment(debtEntity.createdAt).format("YYYY-MM-DD HH:mm")}
+                            </Content>
+                            <Content xs="12" sm="12" md="1">
+                                <TokenAmount
+                                    tokenAmount={debtEntity.principalAmount}
+                                    tokenDecimals={this.state.principalTokenDecimals}
+                                    tokenSymbol={debtEntity.principalTokenSymbol}
+                                />
+                            </Content>
+                            <Content xs="12" sm="12" md="1">
+                                {debtEntity.termLength} {debtEntity.amortizationUnit}
+                            </Content>
+                            <Content xs="12" sm="12" md="2">
+                                <TokenAmount
+                                    tokenAmount={debtEntity.totalRepayment}
+                                    tokenDecimals={this.state.principalTokenDecimals}
+                                    tokenSymbol={debtEntity.principalTokenSymbol}
+                                />
+                            </Content>
+                            <Content xs="12" sm="12" md="2">
+                                {debtEntity.interestRate}%
+                            </Content>
+                            <Content xs="12" sm="12" md="2">
+                                <TokenAmount
+                                    tokenAmount={debtEntity.collateralAmount}
+                                    tokenDecimals={this.state.collateralTokenDecimals}
+                                    tokenSymbol={debtEntity.collateralTokenSymbol}
+                                />
+                            </Content>
+                            <Content xs="12" sm="12" md="2">
+                                {amortizationUnitToFrequency(debtEntity.amortizationUnit)}
+                            </Content>
+                        </Row>
+                    </Col>
+                </Row>
+
+                <Collapse isOpen={this.state.collapse}>
+                    <Drawer>
+                        <Row className="d-flex">
+                            <Content xs="12" sm="12" md="6">
+                                <Row>
+                                    <Col xs="6" sm="6" md="6">
+                                        <Label>Description</Label>
+                                    </Col>
+                                    <Col xs="6" sm="6" md="6">
+                                        {debtEntity.description}
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col xs="6" sm="6" md="6">
+                                        <Label>Grace Period</Label>
+                                    </Col>
+                                    <Col xs="6" sm="6" md="6">
+                                        {`${debtEntity.gracePeriodInDays} days`}
+                                    </Col>
+                                </Row>
+
+                                <Row>
+                                    <Col xs="6" sm="6" md="6">
+                                        <Label>URL</Label>
+                                    </Col>
+                                    <Col xs="6" sm="6" md="6">
+                                        <a href={debtEntity.fillLoanShortUrl}>
+                                            {debtEntity.fillLoanShortUrl}
+                                        </a>
+                                    </Col>
+                                </Row>
+                            </Content>
+                            <Content xs="12" sm="12" md="6">
+                                <SummaryJsonContainer>
+                                    <Label>JSON</Label>
+                                    <TextareaContainer>
+                                        <StyledTextarea
+                                            value={this.generateDebtJSON(debtEntity)}
+                                            readOnly={true}
+                                            innerRef={(textarea: HTMLTextAreaElement) => {
+                                                this.summaryTextarea = textarea;
+                                            }}
+                                        />
+                                        <CopyButton onClick={this.handleCopyClipboard}>
+                                            Copy
+                                        </CopyButton>
+                                    </TextareaContainer>
+                                    <CopiedMessage>
+                                        {this.state.copied ? "Copied!" : ""}
+                                    </CopiedMessage>
+                                </SummaryJsonContainer>
+                            </Content>
+                        </Row>
+                    </Drawer>
+                </Collapse>
+            </Wrapper>
         );
     }
 }

@@ -5,11 +5,12 @@ import { connect } from "react-redux";
 
 import * as Web3 from "web3";
 
-import { Table } from "reactstrap";
 import { DebtEntity } from "../../models";
 import { Dharma } from "@dharmaprotocol/dharma.js";
 
 import DebtOrder from "./DebtOrder";
+
+import { Header, MainWrapper } from "../../components";
 
 // import { CollateralizedSimpleInterestTermsContractParameters } from "@dharmaprotocol/dharma.js/dist/types/src/adapters/collateralized_simple_interest_loan_adapter";
 
@@ -73,24 +74,10 @@ class DebtsList extends React.Component<Props> {
         }
 
         return (
-            <div>
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>Created</th>
-                            <th>Amount</th>
-                            <th>Term</th>
-                            <th>Total repayment</th>
-                            <th>Interest rate</th>
-                            <th>Collateral</th>
-                            <th>LTV</th>
-                            <th>Repayement frequency</th>
-                            <th />
-                        </tr>
-                    </thead>
-                    <tbody>{debts.map((debt) => <DebtOrder key={debt.id} order={debt} />)}</tbody>
-                </Table>
-            </div>
+            <MainWrapper>
+                <Header title="Available loans" />
+                <div>{debts.map((debt) => <DebtOrder key={debt.id} debt={debt} />)}</div>
+            </MainWrapper>
         );
     }
 }

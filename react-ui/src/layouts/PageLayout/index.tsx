@@ -83,7 +83,11 @@ class PageLayout extends React.Component<{}, State> {
 
                     <Main className="Main">
                         <Header className="Header">
-                            <DrawerButton role="button" onClick={this.handleOpenDrawer}>
+                            <DrawerButton
+                                className="d-flex align-items-center"
+                                role="button"
+                                onClick={this.handleOpenDrawer}
+                            >
                                 <Icon icon="bars" />
                             </DrawerButton>
                         </Header>

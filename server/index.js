@@ -27,7 +27,7 @@ async function runApp() {
   app.get('/api/loans', async (req, res) => {
     const { networkId } = req.query;
 
-    const debts = await Debt.find({ networkId, status: 'pending' });
+    const debts = await Debt.find({ networkId, status: 'pending' }).sort('-createdAt');
 
     res.json({ debts });
   });

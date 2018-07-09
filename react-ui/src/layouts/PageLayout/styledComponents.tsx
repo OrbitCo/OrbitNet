@@ -43,7 +43,7 @@ export const Layout = styled.div`
 
 export const Header = styled.div`
     height: 56px;
-    padding: 0 16px 0 72px;
+    padding: 0 16px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
         0 1px 5px 0 rgba(0, 0, 0, 0.12);
     z-index: 3;
@@ -52,9 +52,8 @@ export const Header = styled.div`
 export const DrawerButton = styled.div`
     color: #002326;
     opacity: 0.5;
-    margin: 4px;
     cursor: pointer;
-    height: 48px;
+    height: 100%;
     width: 48px;
     font-size: 22px;
     line-height: 48px;
