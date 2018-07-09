@@ -70,7 +70,7 @@ store.subscribe(
         const pendingDebtEntities = new Map<string, DebtEntity>();
 
         for (const issuanceHash of pendingDebtEntityIssuanceHashes) {
-            pendingDebtEntities.set(issuanceHash, debtEntities.get(issuanceHash));
+            pendingDebtEntities.set(issuanceHash, debtEntities.get(issuanceHash) as DebtEntity);
         }
 
         // We only save the DebtEntities that are pending; all other DebtEntities should be retrieved through dharma.js.
