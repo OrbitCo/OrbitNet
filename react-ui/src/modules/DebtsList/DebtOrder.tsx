@@ -186,7 +186,7 @@ class DebtOrder extends React.Component<Props, State> {
                                         <Label>URL</Label>
                                     </Col>
                                     <Col xs="6" sm="6" md="6">
-                                        <a href={debtEntity.fillLoanShortUrl}>
+                                        <a href={debtEntity.fillLoanShortUrl} target="_blank">
                                             {debtEntity.fillLoanShortUrl}
                                         </a>
                                     </Col>
