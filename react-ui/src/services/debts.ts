@@ -43,6 +43,26 @@ class Debts {
             response.json(),
         );
     }
+
+    cancel(issuanceHash: string): Promise<any> {
+        const options = {
+            method: "DELETE",
+            body: JSON.stringify({ issuanceHash }),
+            ...this.defaultOptions,
+        };
+
+        return fetch(`${this.serverUrl}/api/loans`, options);
+    }
+
+    fill(issuanceHash: string): Promise<any> {
+        const options = {
+            method: "PUT",
+            body: JSON.stringify({ issuanceHash }),
+            ...this.defaultOptions,
+        };
+
+        return fetch(`${this.serverUrl}/api/loans/fill`, options);
+    }
 }
 
 export default new Debts();

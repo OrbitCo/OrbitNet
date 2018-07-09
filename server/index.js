@@ -53,6 +53,36 @@ async function runApp() {
     res.json(savedDebt);
   });
 
+  /**
+   * Changes status of pending debt with a hash to 'filled'
+   */
+  app.put('/api/loans/fill', async (req, res) => {
+    const { issuanceHash } = req.body;
+
+    const debt = await Debt.findOne({ issuanceHash, status: 'pending' });
+
+    if (debt) {
+      await debt.update({ status: 'filled' });
+    }
+
+    res.end();
+  })
+
+  /**
+   * Removes pending loan with hash
+   */
+  app.delete('/api/loans', async (req, res) => {
+    const { issuanceHash } = req.body;
+
+    const debt = await Debt.findOne({ issuanceHash, status: 'pending' });
+
+    if (debt) {
+      await debt.remove();
+    }
+
+    res.end();
+  });
+
   app.listen(process.env.SERVER_PORT, function () {
     console.error(`Listening on port ${process.env.SERVER_PORT}`);
   });

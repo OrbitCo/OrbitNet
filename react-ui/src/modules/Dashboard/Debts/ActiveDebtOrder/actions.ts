@@ -1,6 +1,8 @@
 import { BigNumber } from "bignumber.js";
 import { actionsEnums } from "../../../../common/actionsEnums";
 
+import DebtsService from "../../../../services/debts";
+
 export const successfulRepayment = (
     agreementId: string,
     repaymentAmount: BigNumber,
@@ -14,9 +16,11 @@ export const successfulRepayment = (
     };
 };
 
-export const cancelDebtEntity = (issuanceHash: string) => {
-    return {
+export const cancelDebtEntity = (issuanceHash: string) => async (dispatch: any) => {
+    await DebtsService.cancel(issuanceHash);
+
+    dispatch({
         type: actionsEnums.CANCEL_DEBT_ENTITY,
         payload: issuanceHash,
-    };
+    });
 };

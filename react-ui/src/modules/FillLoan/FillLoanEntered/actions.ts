@@ -1,8 +1,12 @@
 import { actionsEnums } from "../../../common/actionsEnums";
 
-export const fillDebtEntity = (issuanceHash: string) => {
-    return {
+import DebtsService from "../../../services/debts";
+
+export const fillDebtEntity = (issuanceHash: string) => async (dispatch: any) => {
+    await DebtsService.fill(issuanceHash);
+
+    dispatch({
         type: actionsEnums.FILL_DEBT_ENTITY,
         payload: issuanceHash,
-    };
+    });
 };
