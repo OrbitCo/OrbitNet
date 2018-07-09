@@ -8,10 +8,11 @@ export const setError = (errorMessage: string, persisted?: boolean) => {
     };
 };
 
-export const setInfo = (infoMessage: string) => {
+export const setInfo = (infoMessage: string, persisted?: boolean) => {
     return {
         type: actionsEnums.SET_INFO_TOAST,
         infoMessage: infoMessage,
+        persisted,
     };
 };
 

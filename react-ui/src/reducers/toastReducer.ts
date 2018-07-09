@@ -27,6 +27,7 @@ const handleSetInfoToast = (state: ToastReducerState, action: any) => {
         ...state,
         message: action.infoMessage,
         type: ToastType.Info,
+        persisted: action.persisted,
     };
 };
 

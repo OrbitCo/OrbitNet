@@ -11,3 +11,4 @@ export * from "./TokenAmount";
 export * from "./TradingPermissions";
 export * from "./Walkthrough";
 export * from "./WrapETH";
+export { SystemMessage } from "./SystemMessage";

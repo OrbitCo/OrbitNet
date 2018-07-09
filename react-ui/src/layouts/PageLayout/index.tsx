@@ -6,6 +6,7 @@ import Icon from "../../components/Icon/Icon";
 import LeftNavBar from "../LeftNavBar";
 
 import { ToastContainer } from "../../components/Toast";
+import { SystemMessage } from "../../components/SystemMessage";
 
 // Styled components
 import {
@@ -105,6 +106,8 @@ class PageLayout extends React.Component<{}, State> {
                                 </FooterA>
                             </Footer>
                         </Content>
+
+                        <SystemMessage />
                     </Main>
 
                     <LayoutObfuscator
