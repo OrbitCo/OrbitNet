@@ -115,6 +115,25 @@ $ yarn start
 $ docker-compose down
 ```
 
+### Run server without docker
+
+1. Follow instructions described in *Server part* above.
+2. Set `MONGO_HOST=localhost` in `.env` file.
+3. Ensure you have [MongoDB](https://docs.mongodb.com/manual/administration/install-community/) installed and running on your
+local machine.
+
+Command to run mongo daemon in a background:
+
+```
+$ mongod --fork --logpath /var/log/mongod.log
+```
+
+4. Run development server with:
+
+```
+$ yarn start-dev
+```
+
 ## Kovan test network
 
 Whether you have local instance run or deployed it somewhere you can switch to Kovan test network instead of local test chain.
