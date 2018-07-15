@@ -5,6 +5,8 @@ services:
     command: bash -c 'while true; do sleep 60; done'
     environment:
       - NODE_ENV=development
+    env_file:
+      - .env.docker
     ports:
       - '8080:8080'
     volumes:
@@ -12,5 +14,7 @@ services:
       - ./data/server/share:/share
 
   mongo:
+    env_file:
+      - .env.docker
     volumes:
       - ./data/mongo/share:/share
