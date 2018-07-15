@@ -5,7 +5,8 @@ services:
     command: bash -c 'while true; do sleep 60; done'
     environment:
       - NODE_ENV=development
-      - COMPOSE_CONVERT_WINDOWS_PATHS=1
+    env_file:
+      - .env.docker
     ports:
       - '8080:8080'
     volumes:
@@ -13,7 +14,7 @@ services:
       - ./data/server/share:/share
 
   mongo:
-    environment:
-      - COMPOSE_CONVERT_WINDOWS_PATHS=1
+    env_file:
+      - .env.docker
     volumes:
       - ./data/mongo/share:/share
