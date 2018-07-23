@@ -66,7 +66,7 @@ class DebtOrder extends React.Component<Props, State> {
         document.execCommand("copy");
         this.summaryTextarea!.focus();
         this.setState({ copied: true });
-    };
+    }
 
     generateDebtJSON(debt: DebtEntity) {
         return JSON.stringify(generateDebtQueryParams(debt as OpenCollateralizedDebtEntity));
