@@ -61,12 +61,12 @@ class DebtOrder extends React.Component<Props, State> {
 
     toggleDrawer = () => this.setState((state) => ({ collapse: !state.collapse }));
 
-    handleCopyClipboard() {
+    handleCopyClipboard = () => {
         this.summaryTextarea!.select();
         document.execCommand("copy");
         this.summaryTextarea!.focus();
         this.setState({ copied: true });
-    }
+    };
 
     generateDebtJSON(debt: DebtEntity) {
         return JSON.stringify(generateDebtQueryParams(debt as OpenCollateralizedDebtEntity));
