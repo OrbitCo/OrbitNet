@@ -33,23 +33,37 @@ class RequestLoanSuccess extends React.Component<RequestLoanSuccessProps, States
         this.handleShareSocial = this.handleShareSocial.bind(this);
     }
 
+    componentDidMount() {
+        this.buildUrlParams(this.props);
+    }
+
+    componentWillReceiveProps(nextProps: RequestLoanSuccessProps) {
+        if (this.props.debtEntity !== nextProps.debtEntity) {
+            this.buildUrlParams(nextProps);
+        }
+    }
+
     componentDidUpdate(prevProps: RequestLoanSuccessProps) {
         if (this.props.debtEntity !== prevProps.debtEntity) {
-            Analytics.track(Analytics.RequestLoanAction.ViewConfirmation, {
-                category: Analytics.Category.RequestLoan,
-                nonInteraction: 1,
-            });
-
-            const { debtEntity } = this.props;
-
-            if (!debtEntity) {
-                return;
-            }
-
-            const urlParams = generateDebtQueryParams(debtEntity);
-
-            this.setState({ urlParams });
+            this.buildUrlParams(this.props);
         }
+    }
+
+    buildUrlParams(props: RequestLoanSuccessProps) {
+        Analytics.track(Analytics.RequestLoanAction.ViewConfirmation, {
+            category: Analytics.Category.RequestLoan,
+            nonInteraction: 1,
+        });
+
+        const { debtEntity } = props;
+
+        if (!debtEntity) {
+            return;
+        }
+
+        const urlParams = generateDebtQueryParams(debtEntity);
+
+        this.setState({ urlParams });
     }
 
     handleEmailChange(email: string) {
