@@ -1,5 +1,5 @@
 import { BigNumber } from "bignumber.js";
-const BitlyClient = require("bitly");
+// const BitlyClient = require("bitly");
 
 export const encodeUrlParams = (params: any) => {
     const encodedParams = Object.keys(params)
@@ -36,29 +36,41 @@ export async function shortenUrl(
     path?: string,
     queryParams?: object,
 ): Promise<string> {
-    const bitly = BitlyClient(process.env.REACT_APP_BITLY_ACCESS_TOKEN);
-
     if (hostname === "localhost") {
-        hostname = process.env.REACT_APP_NGROK_HOSTNAME || "plex.dharma.io";
+        if (!process.env.REACT_APP_NGROK_HOSTNAME && window.location.port) {
+            hostname += `:${window.location.port}`;
+        }
+
+        if (process.env.REACT_APP_NGROK_HOSTNAME) {
+            hostname = process.env.REACT_APP_NGROK_HOSTNAME;
+        }
     }
 
-    let fullUrl = `https://${hostname}`;
+    return `http://${hostname}/loans`;
 
-    if (path) {
-        fullUrl += path;
-    }
-
-    if (queryParams) {
-        fullUrl += "?" + encodeUrlParams(queryParams);
-    }
-
-    const response = await bitly.shorten(fullUrl);
-
-    if (response.status_code !== 200) {
-        throw new Error("Unable to shorten the url");
-    }
-
-    return response.data.url;
+    // const bitly = BitlyClient(process.env.REACT_APP_BITLY_ACCESS_TOKEN);
+    //
+    // if (hostname === "localhost") {
+    //     hostname = process.env.REACT_APP_NGROK_HOSTNAME || "plex.dharma.io";
+    // }
+    //
+    // let fullUrl = `https://${hostname}`;
+    //
+    // if (path) {
+    //     fullUrl += path;
+    // }
+    //
+    // if (queryParams) {
+    //     fullUrl += "?" + encodeUrlParams(queryParams);
+    // }
+    //
+    // const response = await bitly.shorten(fullUrl);
+    //
+    // if (response.status_code !== 200) {
+    //     throw new Error("Unable to shorten the url");
+    // }
+    //
+    // return response.data.url;
 }
 
 export const withCommas = (input: number) => {

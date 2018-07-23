@@ -180,17 +180,6 @@ class DebtOrder extends React.Component<Props, State> {
                                         {`${debtEntity.gracePeriodInDays.toNumber()} days`}
                                     </Col>
                                 </Row>
-
-                                <Row>
-                                    <Col xs="6" sm="6" md="6">
-                                        <Label>URL</Label>
-                                    </Col>
-                                    <Col xs="6" sm="6" md="6">
-                                        <a href={debtEntity.fillLoanShortUrl} target="_blank">
-                                            {debtEntity.fillLoanShortUrl}
-                                        </a>
-                                    </Col>
-                                </Row>
                             </Content>
                             <Content xs="12" sm="12" md="6">
                                 <SummaryJsonContainer>
