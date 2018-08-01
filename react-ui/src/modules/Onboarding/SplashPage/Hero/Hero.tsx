@@ -40,7 +40,8 @@ export default class Hero extends React.Component<Props, {}> {
                         Smart Contracts.
                     </Description>
                     <BlocksBetweenContainer>
-                        <Button onClick={handleEnterApp}>Get Started</Button>
+                        <Button onClick={handleEnterApp}>Get Started *</Button>
+                        * Make sure that Metamask points to Mainet
                     </BlocksBetweenContainer>
                 </HeroDescription>
 
