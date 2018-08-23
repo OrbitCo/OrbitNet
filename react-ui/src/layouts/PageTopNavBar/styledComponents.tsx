@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
 export const LogoContainer = styled.div`
     // margin: 40px 0 50px;
     flex: 2;
-    margin:0px 30px 0px 30px;
+    margin: 0px 30px 0px 30px;
     text-align: center;
 `;
 

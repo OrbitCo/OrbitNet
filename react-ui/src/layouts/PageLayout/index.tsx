@@ -79,8 +79,8 @@ class PageLayout extends React.Component<{}, State> {
         return (
             <Container>
                 <Layout className={hasDrawer ? "has-drawer" : ""}>
-                    <PageTopNavBar  handleCloseDrawer={this.handleCloseDrawer} />
-                    <Drawer className={`Drawer ${drawerVisible ? "is-visible" : ""}`}>    
+                    <PageTopNavBar handleCloseDrawer={this.handleCloseDrawer} />
+                    <Drawer className={`Drawer ${drawerVisible ? "is-visible" : ""}`}>
                         <LeftNavBar handleCloseDrawer={this.handleCloseDrawer} />
                     </Drawer>
 
