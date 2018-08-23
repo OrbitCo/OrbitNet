@@ -119,19 +119,19 @@ export class TokenSearch extends React.Component<Readonly<Props>, State> {
         return (
             <div>
                 <form>
-                    <Icon icon="search" color="#ffffff" height="28px" opacity={0.5} />
+                    <Icon icon="search" color="#000000" height="28px" opacity={1} />
                     <input
                         placeholder="Search tokens..."
                         ref={(input: HTMLInputElement) => (this.search = input)}
                         onChange={this.handleInputChange}
                         style={{
-                            border: 0,
+                            border: "1px solid black",
                             outline: 0,
-                            backgroundColor: "#082c30",
-                            color: "#ffffff",
-                            opacity: 0.5,
-                            margin: "5px 0 5px 5px",
-                            width: "155px",
+                            // backgroundColor: "#082c30",
+                            color: "#000000",
+                            opacity: 1,
+                            margin: "5px 0 5px 14px",
+                            width: "calc(100% - 40px)",
                         }}
                     />
                 </form>

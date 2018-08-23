@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const WrapETHButton = styled.div`
-    color: #ffffff;
+    color: #000000;
     cursor: pointer;
     font-size: 10px;
     line-height: 25px;
-    opacity: 0.5;
+    opacity: 1;
     padding: 5px 0px;
     text-transform: uppercase;
 

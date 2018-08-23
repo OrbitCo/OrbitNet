@@ -4,6 +4,7 @@ import * as React from "react";
 // Components
 import Icon from "../../components/Icon/Icon";
 import LeftNavBar from "../LeftNavBar";
+import PageTopNavBar from "../PageTopNavBar";
 
 import { ToastContainer } from "../../components/Toast";
 import { SystemMessage } from "../../components/SystemMessage";
@@ -78,7 +79,8 @@ class PageLayout extends React.Component<{}, State> {
         return (
             <Container>
                 <Layout className={hasDrawer ? "has-drawer" : ""}>
-                    <Drawer className={`Drawer ${drawerVisible ? "is-visible" : ""}`}>
+                    <PageTopNavBar  handleCloseDrawer={this.handleCloseDrawer} />
+                    <Drawer className={`Drawer ${drawerVisible ? "is-visible" : ""}`}>    
                         <LeftNavBar handleCloseDrawer={this.handleCloseDrawer} />
                     </Drawer>
 

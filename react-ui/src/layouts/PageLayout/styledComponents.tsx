@@ -63,6 +63,7 @@ export const Drawer = styled.div`
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    padding-top: 50px;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -73,13 +74,12 @@ export const Drawer = styled.div`
     height: 100%;
     max-height: 100%;
     position: absolute;
-    top: 0;
+    top: 100px;
     left: 0;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-        0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    // box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
     border-right: 1px solid #e0e0e0;
-    background: #fafafa;
+    background: #f5f5f5;
     color: #424242;
     overflow: visible;
     overflow-y: auto;
@@ -114,6 +114,8 @@ export const Main = styled.div`
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
+    top: 100px;
+    padding-top: 50px;
     z-index: 1;
     -webkit-overflow-scrolling: touch;
 `;

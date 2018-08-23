@@ -9,7 +9,7 @@ export const ToggleLabel = styled.label`
 `;
 
 export const ToggleName = styled.div`
-    color: #ffffff;
+    color: #000000;
     display: inline-block;
     font-family: DIN;
     font-size: 13px;

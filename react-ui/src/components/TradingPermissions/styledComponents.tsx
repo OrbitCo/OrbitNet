@@ -6,39 +6,42 @@ export const TradingPermissionsWrapper = styled.div`
 
     &.left {
         position: fixed;
-        bottom: 10px;
+        // bottom: 10px;
         padding-left: 25px;
     }
 `;
 
 export const TradingPermissionsTitle = styled.div`
-    color: #ffffff;
-    font-size: 13px;
+    color: #000000;
+    font-size: 18px;
+    margin-bottom: 30px;
     line-height: 25px;
-    opacity: 0.5;
+    // opacity: 0.5;
     padding: 5px 0px;
     text-transform: uppercase;
 `;
 
 export const TokenSearchResults = styled.div`
     min-height: 176px;
+    border: 1px solid black;
+    padding: 10px;
 `;
 
 export const TokenSymbol = styled.div`
     display: inline-block;
     min-width: 40px;
     padding-right: 5px;
-    opacity: 0.5;
+    // opacity: 0.5;
 `;
 
 export const TokenBalance = styled.div`
     display: inline-block;
-    opacity: 0.5;
+    // opacity: 0.5;
 `;
 
 export const NoTokenResults = styled.div`
-    color: #ffffff;
-    opacity: 0.5;
+    color: #000000;
+    // opacity: 0.5;
 `;
 
 export const FaucetButton = StyledButton.extend`
