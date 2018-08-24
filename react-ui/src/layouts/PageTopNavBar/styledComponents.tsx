@@ -7,13 +7,14 @@ export const Wrapper = styled.div`
     background-color: #2bbbad;
     padding-bottom: 20px;
     padding-top: 20px;
-    width: inherit;
+    width: auto;
     position: fixed;
     display:flex;
     z-index: 100;
     height: 100px;
     top: 0px;
-    left: 0;
+    left: 30px;
+    right: 30px;
     bottom: 0;
     box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.35);
 `;
