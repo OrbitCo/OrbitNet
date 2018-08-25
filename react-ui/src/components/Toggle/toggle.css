@@ -55,7 +55,7 @@
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: #FFFFFF;
+  background-color: green;
   opacity: 0.5;
 }
 
@@ -124,9 +124,9 @@
 }
 
 .react-toggle--checked .react-toggle-thumb {
-  opacity: 1;
+
   left: 15px;
-  border-color: #FFFFFF;
+  background-color: greu;
 }
 
 .react-toggle--focus .react-toggle-thumb {
