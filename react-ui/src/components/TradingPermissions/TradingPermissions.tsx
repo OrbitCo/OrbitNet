@@ -232,7 +232,7 @@ class TradingPermissions extends React.Component<Props, State> {
         return (
             <TradingPermissionsWrapper className={this.props.className}>
                 <TradingPermissionsTitle>
-                    Token  Permissions** <Tooltip content={tooltipContent} id="token-permissions" />
+                    Token Permissions** <Tooltip content={tooltipContent} id="token-permissions" />
                 </TradingPermissionsTitle>
                 <TokenSearch
                     tokens={tokens}

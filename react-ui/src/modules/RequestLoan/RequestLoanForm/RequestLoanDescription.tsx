@@ -8,9 +8,8 @@ export class RequestLoanDescription extends React.Component<Props, {}> {
         return (
             <div>
                 <p>
-                    Please use this form generate an <b>Open Debt Order</b>.
-                  You can propose Loan Terms below.
-                  The Loan request will be posted at the Board for Lenders
+                    Please use this form generate an <b>Open Debt Order</b>. You can propose Loan
+                    Terms below. The Loan request will be posted at the Board for Lenders
                 </p>
                 <p>
                     Generating an <b>Open Debt Order</b> is <i>entirely</i> free, but you will be

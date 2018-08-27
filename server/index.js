@@ -10,11 +10,23 @@ const Debt = require('./models/debt');
 
 const app = express();
 
+let corsWhitelist = [process.env.FRONT_HOST];
+
+if (process.env.NODE_ENV === 'production') {
+  corsWhitelist = ['http://www.coincredit.club', 'http://www.coincredit.club'];
+}
+
 async function runApp() {
   await initMongoose();
 
   app.use(cors({
-    origin: process.env.FRONT_HOST,
+    origin: function (origin, callback) {
+      if (corsWhitelist.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
     credentials: true,
   }));
 

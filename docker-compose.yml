@@ -9,7 +9,7 @@ services:
   mongo:
     image: mongo
     container_name: orbit-net-mongo
-    ports:
+    expose:
       - 27017
     volumes:
       - ./data/mongo/data:/data/db

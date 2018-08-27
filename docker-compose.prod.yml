@@ -10,8 +10,8 @@ services:
       - server
       - front
     ports:
-      - "80:80"
-      - "443:443"
+      - 127.0.0.1:80:80
+      - 127.0.0.1:443:443
 
   server:
     build:
@@ -20,7 +20,7 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
-    ports:
+    expose:
       - 8080
 
   front:
@@ -32,5 +32,5 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
-    ports:
+    expose:
       - 3000
