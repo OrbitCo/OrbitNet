@@ -80,14 +80,14 @@ class Debts extends React.Component<Props, State> {
         if (this.props.initializing || this.props.currentTime === undefined) {
             return (
                 <MainWrapper>
-                    <Header title="Your Debts" />
+                    <Header title="Your Loans" />
                     <BarLoader width={200} height={10} color={"#1cc1cc"} loading={true} />
                 </MainWrapper>
             );
         } else {
             return (
                 <MainWrapper>
-                    <Header title="Your Debts" />
+                    <Header title="Your Loans" />
                     <DebtsMetricsContainer debtEntities={allDebtEntities} />
                     {activeDebtEntities.map((debtEntity) => (
                         <ActiveDebtOrderContainer

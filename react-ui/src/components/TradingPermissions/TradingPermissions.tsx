@@ -225,14 +225,14 @@ class TradingPermissions extends React.Component<Props, State> {
 
         const tooltipContent = (
             <span>
-                Turn on permissions for a token to enable its use with the Dharma smart contracts.
+                Turn on permissions for a token to enable its use with the Orbit smart contracts.
             </span>
         );
 
         return (
             <TradingPermissionsWrapper className={this.props.className}>
                 <TradingPermissionsTitle>
-                    Token Permissions <Tooltip content={tooltipContent} id="token-permissions" />
+                    Token  Permissions** <Tooltip content={tooltipContent} id="token-permissions" />
                 </TradingPermissionsTitle>
                 <TokenSearch
                     tokens={tokens}
