@@ -12,6 +12,10 @@
 	src: url('../fonts/DIN.otf');
 }
 
+#token-permissions{
+	margin-left: -50px;
+}
+
 @font-face {
 	font-family: 'Din Bold';
 	src: url('../fonts/DINBold.otf');
